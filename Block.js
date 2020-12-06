@@ -32,6 +32,12 @@ class Block{
       noStroke();
       rect(0, 0, this.width, this.height);
       pop();
-    };
+    }
   };
-};
+
+  Score(){
+    if(this.visible < 0 && this.visible >= - 50){
+      score++;
+    }
+  };
+}

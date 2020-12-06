@@ -3,6 +3,7 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
+var BackGroundImage;
 var ground;
 var base1;
 var block1,  block2,  block3,  block4,  block5,  block6,  block7,  block8,  block9, 
@@ -10,9 +11,11 @@ var block1,  block2,  block3,  block4,  block5,  block6,  block7,  block8,  bloc
     block20, block21, block22, block23, block24, block25;
 var polygon, polygonImage;
 var slingShot;
+var score = 0;
 
 function preload(){
   polygonImage = loadImage("polygon.png");
+  BackgroundChange();
 }
 
 
@@ -68,8 +71,15 @@ function setup() {
 }
 
 function draw() {
-  background(58, 45, 45);  
+  if(BackGroundImage){
+    //background(BackGroundImage);  
+    background(70, 45, 45);
+  }
   Engine.update(engine);
+
+  textSize(32);
+  fill("white");
+  text("Score: " + score, 750, 40);
 
   imageMode(CENTER);
   image(polygonImage, polygon.position.x, polygon.position.y, 40, 40);
@@ -91,6 +101,22 @@ function draw() {
   block14.display();
   block15.display();
   block16.display();
+  block1.Score();
+  block2.Score();
+  block3.Score();
+  block4.Score();
+  block5.Score();
+  block6.Score();
+  block7.Score();
+  block8.Score();
+  block9.Score();
+  block10.Score();
+  block11.Score();
+  block12.Score();
+  block13.Score();
+  block14.Score();
+  block15.Score();
+  block16.Score();
   base1.display();
   block17.display();
   block18.display();
@@ -101,6 +127,15 @@ function draw() {
   block23.display();
   block24.display();
   block25.display();
+  block17.Score();
+  block18.Score();
+  block19.Score();
+  block20.Score();
+  block21.Score();
+  block22.Score();
+  block23.Score();
+  block24.Score();
+  block25.Score();
   base2.display();
   slingShot.display();
 }
@@ -118,4 +153,19 @@ function mouseDragged(){
 
 function mouseReleased(){
   slingShot.fly();
+}
+
+async function BackgroundChange(){
+  var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var responseJSON = await response.json();
+
+  var dt = responseJSON.datetime;
+  var hour = dt.slice(11, 13);
+
+  if(hour >= 06 && hour < 19){
+    BackGroundImage = loadImage("Day.png");
+  }else {
+    BackGroundImage = loadImage("Night.png");
+  }
+  
 }
