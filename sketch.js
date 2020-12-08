@@ -72,8 +72,7 @@ function setup() {
 
 function draw() {
   if(BackGroundImage){
-    //background(BackGroundImage);  
-    background(70, 45, 45);
+    background(BackGroundImage);  
   }
   Engine.update(engine);
 
@@ -160,12 +159,11 @@ async function BackgroundChange(){
   var responseJSON = await response.json();
 
   var dt = responseJSON.datetime;
-  var hour = dt.slice(11, 13);
+  var hour = dt.slice(12, 13);
 
-  if(hour >= 06 && hour < 19){
+ if(hour >= 06 && hour < 19){
     BackGroundImage = loadImage("Day.png");
   }else {
     BackGroundImage = loadImage("Night.png");
   }
-  
 }
