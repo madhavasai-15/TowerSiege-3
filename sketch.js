@@ -15,7 +15,7 @@ var score = 0;
 
 function preload(){
   polygonImage = loadImage("polygon.png");
-  BackgroundChange();
+  BackGroundImage = loadImage("Day.png");
 }
 
 
